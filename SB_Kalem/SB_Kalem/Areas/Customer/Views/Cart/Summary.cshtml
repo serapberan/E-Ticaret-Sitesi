@@ -1,0 +1,119 @@
+﻿@model SB_Kalem.Models.ShoppingCartVm
+@{
+    ViewData["Title"] = "Summary";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post">
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+
+
+                        <div class="mb-3 row">
+                            <label for="inputPassword" class="col-sm-3 col-form-label">Adı</label>
+                            <div class="col-sm-9">
+                                <input type="text" asp-for="orderHeader.Name" class="form-control">
+                                <span asp-validation-for="orderHeader.Name" class="text-danger"></span> @*Kullanıcı bu alanları boş bırakamasın *@
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="inputPassword" class="col-sm-3 col-form-label">Soyadı</label>
+                            <div class="col-sm-9">
+                                <input type="text" asp-for="orderHeader.Surname" class="form-control">
+                                <span asp-validation-for="orderHeader.Surname" class="text-danger"></span> @*Kullanıcı bu alanları boş bırakamasın *@
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="inputPassword" class="col-sm-3 col-form-label">Adres</label>
+                            <div class="col-sm-9">
+                                <input type="text" asp-for="orderHeader.Adress" class="form-control">
+                                <span asp-validation-for="orderHeader.Adress" class="text-danger"></span> @*Kullanıcı bu alanları boş bırakamasın *@
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="inputPassword" class="col-sm-3 col-form-label">Semt</label>
+                            <div class="col-sm-9">
+                                <input type="text" asp-for="orderHeader.Semt" class="form-control">
+                                <span asp-validation-for="orderHeader.Semt" class="text-danger"></span> @*Kullanıcı bu alanları boş bırakamasın *@
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="inputPassword" class="col-sm-3 col-form-label">Şehir</label>
+                            <div class="col-sm-9">
+                                <input type="text" asp-for="orderHeader.Sehir" class="form-control">
+                                <span asp-validation-for="orderHeader.Sehir" class="text-danger"></span> @*Kullanıcı bu alanları boş bırakamasın *@
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="inputPassword" class="col-sm-3 col-form-label">Telefon Numarası</label>
+                            <div class="col-sm-9">
+                                <input type="text" asp-for="orderHeader.PhoneNumber" class="form-control">
+                                <span asp-validation-for="orderHeader.PhoneNumber" class="text-danger"></span> @*Kullanıcı bu alanları boş bırakamasın *@
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="inputPassword" class="col-sm-3 col-form-label">Posta Kodu</label>
+                            <div class="col-sm-9">
+                                <input type="text" asp-for="orderHeader.PostaKodu" class="form-control">
+                                <span asp-validation-for="orderHeader.PostaKodu" class="text-danger"></span> @*Kullanıcı bu alanları boş bırakamasın *@
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="col-md-12 ">
+
+                            <ul class="list-group mb-3">
+                                @foreach (var item in Model.ListCart)
+                                {
+                                    <li class="list-group-item d-flex justify-content-between lh-sm">
+                                        <div>
+                                            <h6 class="my-0">@item.Product.Title</h6>
+                                            <small class="text-muted">Adet: @item.Count</small>
+                                        </div>
+                                        <span class="text-muted">@((item.Count * item.Product.Price).ToString("000,0.00")) ₺</span>
+                                    </li>
+                                }
+
+
+
+                                <li class="list-group-item d-flex justify-content-between bg-light">
+                                    <div class="text-success">
+                                        <h6 class="my-0">Toplam Tutar: </h6>
+
+                                    </div>
+                                    <span class="text-success">@(Model.orderHeader.OrderTotal.ToString("000,0.00")) ₺</span>
+                                </li>
+
+                            </ul>
+
+                            <button type="submit" class="btn btn-success form-control">Siparişi Tamamla</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="row">
+                    <div class="col-md-6">
+
+                    </div>
+                    <div class="col-md-6">
+                        
+
+                            <a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn-primary form-control" style="text-align:center"> Anasayfa</a>
+               
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+@section  Scripts{
+<partial name="_ValidationScriptsPartial" />
+}

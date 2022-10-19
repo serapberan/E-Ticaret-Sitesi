@@ -1,0 +1,28 @@
+﻿@model SB_Kalem.Models.Category
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div>
+    <h4 style="color:darkblue"> Kategori Silme Sayfası</h4> 
+    <hr class="border-info" />
+
+    <dl class="row">
+        <dt class="col-sm-2">
+            Kategori Adı
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <h6 style="color:red">Bu kaydı silmek istediğinizden emin misiniz?</h6>
+        <input type="submit" value="Sil" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-primary">Kategori Listesi</a>
+    </form>
+</div>

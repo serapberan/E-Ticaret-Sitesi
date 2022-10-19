@@ -1,0 +1,27 @@
+﻿@model ApplicationUser
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h4 style="color:darkblue"> Kullanıcı Kaydı Silme Sayfası</h4>
+    <hr class="border-info" />
+
+    <dl class="row">
+        <dt class="col-sm-2">
+           Email
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <h6 style="color:red">Bu kaydı silmek istediğinizden emin misiniz?</h6>
+        <input type="submit" value="Sil" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-primary">Kullanıcı Listesi</a>
+    </form>
+</div>
+
